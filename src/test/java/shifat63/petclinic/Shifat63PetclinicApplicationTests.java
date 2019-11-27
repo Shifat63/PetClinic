@@ -1,4 +1,4 @@
-package shifat63.petclinic.shifat63petclinic;
+package shifat63.petclinic;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
