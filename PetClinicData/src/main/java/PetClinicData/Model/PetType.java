@@ -1,4 +1,4 @@
-package Model;
+package PetClinicData.Model;
 
 public class PetType extends BaseEntity {
     private String name;

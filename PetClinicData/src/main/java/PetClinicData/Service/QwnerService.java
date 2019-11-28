@@ -1,6 +1,6 @@
-package Services;
+package PetClinicData.Service;
 
-import Model.Owner;
+import PetClinicData.Model.Owner;
 
 public interface QwnerService extends CrudService<Owner, Long> {
     Owner findByLastName (String lastName);

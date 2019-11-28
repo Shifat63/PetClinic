@@ -1,6 +1,6 @@
-package Services;
+package PetClinicData.Service;
 
-import Model.Vet;
+import PetClinicData.Model.Vet;
 
 public interface VetService extends CrudService<Vet, Long> {
 }
