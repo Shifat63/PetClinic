@@ -6,7 +6,9 @@ import PetClinicData.Service.OwnerService;
 import PetClinicData.Service.PetService;
 import PetClinicData.Service.VetService;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
@@ -39,6 +41,8 @@ public class DataLoader implements CommandLineRunner {
         owner3.setLastName("Khan");
         ownerService.save(owner3);
 
+        System.out.println("Owner data loaded");
+
         Vet vet = new Vet();
         vet.setId(1L);
         vet.setFirstName("Tamim");
@@ -50,6 +54,8 @@ public class DataLoader implements CommandLineRunner {
         vet2.setFirstName("Saiful");
         vet2.setLastName("Islam");
         vetService.save(vet2);
+
+        System.out.println("Vet data loaded");
 
     }
 }
