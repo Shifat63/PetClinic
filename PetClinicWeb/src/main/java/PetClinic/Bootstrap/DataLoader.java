@@ -1,14 +1,13 @@
 package PetClinic.Bootstrap;
 
-import PetClinicData.Model.Owner;
-import PetClinicData.Model.PetType;
-import PetClinicData.Model.Vet;
-import PetClinicData.Service.OwnerService;
-import PetClinicData.Service.PetService;
-import PetClinicData.Service.PetTypeService;
-import PetClinicData.Service.VetService;
+import PetClinicData.Model.*;
+import PetClinicData.Service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -17,54 +16,140 @@ public class DataLoader implements CommandLineRunner {
     private final PetService petService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialityService specialityService;
 
-    public DataLoader(OwnerService ownerService, PetService petService, VetService vetService, PetTypeService petTypeService) {
+    public DataLoader(OwnerService ownerService, PetService petService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
         this.ownerService = ownerService;
         this.petService = petService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialityService = specialityService;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        PetType petType = new PetType();
-        petType.setName("Dog");
-        petTypeService.save(petType);
+        loadData();
+    }
 
-        PetType petType1 = new PetType();
-        petType1.setName("Cat");
-        petTypeService.save(petType1);
+    private void loadData() {
+        PetType dogType = new PetType();
+        dogType.setName("Dog");
+        petTypeService.save(dogType);
+
+        PetType catType = new PetType();
+        catType.setName("Cat");
+        petTypeService.save(catType);
 
         System.out.println("PetType data loaded");
 
-        Owner owner = new Owner();
-        owner.setFirstName("Md Emtazul");
-        owner.setLastName("Haque");
-        ownerService.save(owner);
+        Speciality radiology = new Speciality();
+        radiology.setDescription("Radiology Specialist");
+        specialityService.save(radiology);
 
-        Owner owner2 = new Owner();
-        owner2.setFirstName("Torikul");
-        owner2.setLastName("Islam");
-        ownerService.save(owner2);
+        Speciality surgery = new Speciality();
+        surgery.setDescription("Surgon");
+        specialityService.save(surgery);
 
-        Owner owner3 = new Owner();
-        owner3.setFirstName("Ibrahim");
-        owner3.setLastName("Khan");
-        ownerService.save(owner3);
+        Speciality dentistry = new Speciality();
+        dentistry.setDescription("Dentist");
+        specialityService.save(dentistry);
 
-        System.out.println("Owner data loaded");
+        System.out.println("Speciality data loaded");
 
-        Vet vet = new Vet();
-        vet.setFirstName("Tamim");
-        vet.setLastName("Haqlader");
-        vetService.save(vet);
+        Pet tommy = new Pet();
+        tommy.setName("Tommy");
+        tommy.setBirthDate(LocalDate.now());
+        tommy.setPetType(dogType);
 
-        Vet vet2 = new Vet();
-        vet2.setFirstName("Saiful");
-        vet2.setLastName("Islam");
-        vetService.save(vet2);
+        Pet hosko = new Pet();
+        hosko.setName("Hosko");
+        hosko.setBirthDate(LocalDate.now());
+        hosko.setPetType(dogType);
+
+        Pet fire = new Pet();
+        fire.setName("Fire");
+        fire.setBirthDate(LocalDate.now());
+        fire.setPetType(catType);
+
+        Pet vulo = new Pet();
+        vulo.setName("Vulo");
+        vulo.setBirthDate(LocalDate.now());
+        vulo.setPetType(catType);
+
+        Owner emtazul = new Owner();
+        emtazul.setFirstName("Md Emtazul");
+        emtazul.setLastName("Haque");
+        emtazul.setAddress("Germany");
+        emtazul.setTelephone("123456");
+        emtazul.setCity("Bonn");
+
+        tommy.setOwner(emtazul);
+        petService.save(tommy);
+        vulo.setOwner(emtazul);
+        petService.save(vulo);
+        Set<Pet> emtazulPets = new HashSet<>();
+        emtazulPets.add(tommy);
+        emtazulPets.add(vulo);
+        emtazul.setPets(emtazulPets);
+
+        ownerService.save(emtazul);
+
+        Owner torikul = new Owner();
+        torikul.setFirstName("Torikul");
+        torikul.setLastName("Islam");
+        torikul.setAddress("Bangladesh");
+        torikul.setCity("Dhaka");
+        torikul.setTelephone("34567");
+
+        hosko.setOwner(torikul);
+        petService.save(hosko);
+        Set<Pet> torikulPets = new HashSet<>();
+        torikulPets.add(hosko);
+        torikul.setPets(torikulPets);
+
+        ownerService.save(torikul);
+
+        Owner ibrahim = new Owner();
+        ibrahim.setFirstName("Ibrahim");
+        ibrahim.setLastName("Khan");
+        ibrahim.setAddress("Bangladesh");
+        ibrahim.setCity("Madaripur");
+        ibrahim.setTelephone("98765");
+
+        fire.setOwner(ibrahim);
+        petService.save(fire);
+        Set<Pet> ibrahimPets = new HashSet<>();
+        ibrahimPets.add(fire);
+        ibrahim.setPets(ibrahimPets);
+
+        ownerService.save(ibrahim);
+
+        System.out.println("Owner and Pet data loaded");
+
+        Vet tamim = new Vet();
+        tamim.setFirstName("Tamim");
+        tamim.setLastName("Haqlader");
+
+        Set<Speciality> tamimSpecialities = new HashSet<>();
+        tamimSpecialities.add(surgery);
+        tamimSpecialities.add(dentistry);
+
+        tamim.setSpecialities(tamimSpecialities);
+
+        vetService.save(tamim);
+
+        Vet saiful = new Vet();
+        saiful.setFirstName("Saiful");
+        saiful.setLastName("Islam");
+
+        Set<Speciality> saifulSpecialities = new HashSet<>();
+        saifulSpecialities.add(surgery);
+        saifulSpecialities.add(radiology);
+
+        saiful.setSpecialities(saifulSpecialities);
+
+        vetService.save(saiful);
 
         System.out.println("Vet data loaded");
-
     }
 }
