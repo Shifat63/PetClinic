@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Component
 @Profile({"map", "default"})
-public class DataLoader implements CommandLineRunner {
+public class DataLoaderMap implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final PetService petService;
@@ -21,7 +21,7 @@ public class DataLoader implements CommandLineRunner {
     private final SpecialityService specialityService;
     private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, PetService petService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
+    public DataLoaderMap(OwnerService ownerService, PetService petService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.petService = petService;
         this.vetService = vetService;
@@ -36,7 +36,7 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadData() {
-        //Strat PetType data loading
+        //Start PetType data loading
         PetType dogType = new PetType();
         dogType.setName("Dog");
         petTypeService.save(dogType);
@@ -48,7 +48,7 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("PetType data loaded");
         //End PetType data loading
 
-        //Strat Speciality data loading
+        //Start Speciality data loading
         Speciality radiology = new Speciality();
         radiology.setDescription("Radiology Specialist");
         specialityService.save(radiology);
@@ -64,7 +64,7 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("Speciality data loaded");
         //End Speciality data loading
 
-        //Strat Pet data loading
+        //Start Pet data loading
         Pet tommy = new Pet();
         tommy.setName("Tommy");
         tommy.setBirthDate(LocalDate.now());
@@ -90,9 +90,9 @@ public class DataLoader implements CommandLineRunner {
         petService.save(vulo);
 
         System.out.println("Pet data loaded");
-        //Strat Pet data loading
+        //End Pet data loading
 
-        //Strat Owner data loading
+        //Start Owner data loading
         Owner emtazul = new Owner();
         emtazul.setFirstName("Md Emtazul");
         emtazul.setLastName("Haque");
