@@ -8,7 +8,7 @@
 
         <link rel="shortcut icon" type="image/x-icon" th:href="@{/resources/images/favicon.png}">
 
-        <title>PetClinic</title>
+        <title th:text="#{title}">Pet Clinic</title>
 
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -21,25 +21,37 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
             <div class="container">
-                <a class="navbar-brand" href="/index.html">Pet Clinic</a>
+                <a class="navbar-brand" href="/index">Pet Clinic</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="/index.html">Home
+                            <a class="nav-link" th:href="@{/index}">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Find Vet</a>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/vets/index}">Find Vet</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Owner</a>
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#">Owner</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" th:href="@{/owners/index}">View All</a>
+                                    <a class="dropdown-item" th:href="@{/owners/registerOwner}">Register</a>
+                                </div>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Pet</a>
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#">Pet</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" th:href="@{/pets/index}">View All</a>
+                                    <a class="dropdown-item" th:href="@{/pets/registerPet}">Register</a>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>

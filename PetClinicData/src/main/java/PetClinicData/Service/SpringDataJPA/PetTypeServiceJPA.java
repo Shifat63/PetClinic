@@ -19,29 +19,29 @@ public class PetTypeServiceJPA implements PetTypeService {
     }
 
     @Override
-    public Set<PetType> findAll() {
+    public Set<PetType> findAll() throws Exception {
         Set<PetType> petTypes = new HashSet<>();
         petTypeRepository.findAll().forEach(petTypes::add);
         return petTypes;
     }
 
     @Override
-    public PetType findById(Long id) {
-        return petTypeRepository.findById(id).orElse(null);
+    public PetType findById(Long id) throws Exception {
+        return petTypeRepository.findById(id).get();
     }
 
     @Override
-    public PetType save(PetType object) {
+    public PetType save(PetType object) throws Exception {
         return petTypeRepository.save(object);
     }
 
     @Override
-    public void delete(PetType object) {
+    public void delete(PetType object) throws Exception {
         petTypeRepository.delete(object);
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws Exception {
         petTypeRepository.deleteById(id);
     }
 }

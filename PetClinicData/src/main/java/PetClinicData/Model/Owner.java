@@ -1,6 +1,9 @@
 package PetClinicData.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -9,12 +12,19 @@ public class Owner extends Person {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets;
 
+    @NotBlank(message = "Address must not be empty")
+    @Size(min = 1,max = 255, message = "Address must be between 1 to 255 characters")
     @Column(name = "address")
     private String address;
 
+    @NotBlank(message = "City must not be empty")
+    @Size(min = 1, max = 255, message = "City must be between 1 to 255 characters")
     @Column(name = "city")
     private String city;
 
+    @NotBlank(message = "Telephone must not be empty")
+    @Size(min = 5, max = 20, message = "Telephone must be between 5 to 20 characters")
+    @Pattern(regexp="([0-9]*)", message = "Telephone must contain numbers only.")
     @Column(name = "telephone")
     private String telephone;
 

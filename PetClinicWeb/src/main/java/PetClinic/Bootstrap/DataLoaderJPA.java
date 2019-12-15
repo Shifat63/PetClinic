@@ -35,7 +35,7 @@ public class DataLoaderJPA implements CommandLineRunner {
         loadData();
     }
 
-    private void loadData() {
+    private void loadData() throws Exception{
         //Start PetType data loading
         PetType dogType = new PetType();
         dogType.setName("Dog");

@@ -12,32 +12,32 @@ import java.util.Set;
 @Profile({"map", "default"})
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
     @Override
-    public Set<Owner> findAll() {
+    public Set<Owner> findAll() throws Exception {
         return super.findAll();
     }
 
     @Override
-    public Owner findById(Long id) {
+    public Owner findById(Long id) throws Exception {
         return super.findById(id);
     }
 
     @Override
-    public Owner save(Owner object) {
+    public Owner save(Owner object) throws Exception {
         return super.save(object);
     }
 
     @Override
-    public void delete(Owner object) {
+    public void delete(Owner object) throws Exception {
         super.delete(object);
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws Exception {
         super.deleteById(id);
     }
 
     @Override
-    public Set<Owner> findByLastName(String lastName) {
+    public Set<Owner> findByLastName(String lastName) throws Exception {
         Set<Owner> owners = new HashSet<>();
         for (Owner owner : this.findAll())
         {

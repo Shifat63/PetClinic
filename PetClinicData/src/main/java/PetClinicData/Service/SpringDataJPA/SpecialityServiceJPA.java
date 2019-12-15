@@ -19,29 +19,29 @@ public class SpecialityServiceJPA implements SpecialityService {
     }
 
     @Override
-    public Set<Speciality> findAll() {
+    public Set<Speciality> findAll() throws Exception {
         Set<Speciality> specialities = new HashSet<>();
         specialityRepository.findAll().forEach(specialities::add);
         return specialities;
     }
 
     @Override
-    public Speciality findById(Long id) {
-        return specialityRepository.findById(id).orElse(null);
+    public Speciality findById(Long id) throws Exception {
+        return specialityRepository.findById(id).get();
     }
 
     @Override
-    public Speciality save(Speciality object) {
+    public Speciality save(Speciality object) throws Exception {
         return specialityRepository.save(object);
     }
 
     @Override
-    public void delete(Speciality object) {
+    public void delete(Speciality object) throws Exception {
         specialityRepository.delete(object);
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws Exception {
         specialityRepository.deleteById(id);
     }
 }

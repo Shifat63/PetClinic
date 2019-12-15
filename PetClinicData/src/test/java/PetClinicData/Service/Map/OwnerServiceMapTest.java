@@ -14,7 +14,7 @@ class OwnerServiceMapTest {
     final String fakeLastName = "Khan";
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
         ownerServiceMap = new OwnerServiceMap();
         Owner owner = new Owner();
         owner.setId(id);
@@ -23,13 +23,13 @@ class OwnerServiceMapTest {
     }
 
     @Test
-    void findAll() {
+    void findAll() throws Exception {
         assertNotNull(ownerServiceMap.findAll());
         assertEquals(1,ownerServiceMap.findAll().size());
     }
 
     @Test
-    void findById() {
+    void findById() throws Exception {
         //Found
         assertNotNull(ownerServiceMap.findById(id));
         assertEquals(id, ownerServiceMap.findById(id).getId());
@@ -39,7 +39,7 @@ class OwnerServiceMapTest {
     }
 
     @Test
-    void save() {
+    void save() throws Exception{
         Long existingId = 2L;
         Long newId = 3L;
 
@@ -62,19 +62,19 @@ class OwnerServiceMapTest {
     }
 
     @Test
-    void delete() {
+    void delete() throws Exception{
         ownerServiceMap.delete(ownerServiceMap.findById(id));
         assertEquals(0, ownerServiceMap.findAll().size());
     }
 
     @Test
-    void deleteById() {
+    void deleteById() throws Exception{
         ownerServiceMap.deleteById(id);
         assertEquals(0, ownerServiceMap.findAll().size());
     }
 
     @Test
-    void findByLastName() {
+    void findByLastName() throws Exception{
         //Found
         assertNotNull(ownerServiceMap.findByLastName(lastName));
         assertEquals(1, ownerServiceMap.findByLastName(lastName).size());

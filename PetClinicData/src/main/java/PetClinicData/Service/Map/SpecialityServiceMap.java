@@ -11,27 +11,27 @@ import java.util.Set;
 @Profile({"map", "default"})
 public class SpecialityServiceMap extends AbstractMapService<Speciality, Long> implements SpecialityService {
     @Override
-    public Set<Speciality> findAll() {
+    public Set<Speciality> findAll() throws Exception {
         return super.findAll();
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws Exception {
         super.deleteById(id);
     }
 
     @Override
-    public void delete(Speciality object) {
+    public void delete(Speciality object) throws Exception {
         super.delete(object);
     }
 
     @Override
-    public Speciality save(Speciality object) {
+    public Speciality save(Speciality object) throws Exception {
         return super.save(object);
     }
 
     @Override
-    public Speciality findById(Long id) {
+    public Speciality findById(Long id) throws Exception {
         return super.findById(id);
     }
 }

@@ -19,29 +19,29 @@ public class VisitServiceJPA implements VisitService {
     }
 
     @Override
-    public Set<Visit> findAll() {
+    public Set<Visit> findAll() throws Exception {
         Set<Visit> visits = new HashSet<>();
         visitRepository.findAll().forEach(visits::add);
         return visits;
     }
 
     @Override
-    public Visit findById(Long id) {
-        return visitRepository.findById(id).orElse(null);
+    public Visit findById(Long id) throws Exception {
+        return visitRepository.findById(id).get();
     }
 
     @Override
-    public Visit save(Visit object) {
+    public Visit save(Visit object) throws Exception {
         return visitRepository.save(object);
     }
 
     @Override
-    public void delete(Visit object) {
+    public void delete(Visit object) throws Exception {
         visitRepository.delete(object);
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws Exception {
         visitRepository.deleteById(id);
     }
 }

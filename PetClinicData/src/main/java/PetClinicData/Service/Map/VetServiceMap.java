@@ -11,27 +11,32 @@ import java.util.Set;
 @Profile({"map", "default"})
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
-    public Set<Vet> findAll() {
+    public Set<Vet> findAll() throws Exception {
         return super.findAll();
     }
 
     @Override
-    public Vet findById(Long id) {
+    public Vet findById(Long id) throws Exception {
         return super.findById(id);
     }
 
     @Override
-    public Vet save(Vet object) {
+    public Vet save(Vet object) throws Exception {
         return super.save(object);
     }
 
     @Override
-    public void delete(Vet object) {
+    public void delete(Vet object) throws Exception {
         super.delete(object);
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws Exception {
         super.deleteById(id);
+    }
+
+    @Override
+    public Set<Vet> findByCriteria(String name, Long specialityId) throws Exception {
+        return null;
     }
 }

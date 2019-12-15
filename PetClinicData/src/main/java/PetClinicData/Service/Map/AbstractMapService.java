@@ -7,15 +7,15 @@ import java.util.*;
 public class AbstractMapService<T extends BaseEntity, Id extends Long> {
     protected Map<Long, T> map = new HashMap<>();
 
-    Set<T> findAll(){
+    Set<T> findAll() throws Exception{
         return new HashSet<>(map.values());
     }
 
-    T findById(Id id){
+    T findById(Id id) throws Exception{
         return map.get(id);
     }
 
-    T save(T object){
+    T save(T object) throws Exception{
         if(object!=null)
         {
             if(object.getId()==null)
@@ -31,15 +31,15 @@ public class AbstractMapService<T extends BaseEntity, Id extends Long> {
         return object;
     }
 
-    void deleteById(Id id){
+    void deleteById(Id id) throws Exception{
         map.remove(id);
     }
 
-    void delete(T object){
+    void delete(T object) throws Exception{
         map.entrySet().removeIf(entry -> entry.getValue().equals(object));
     }
 
-    private Long getNextId(){
+    private Long getNextId() throws Exception{
         Long nextId;
         try{
             nextId=Collections.max(map.keySet()) + 1;

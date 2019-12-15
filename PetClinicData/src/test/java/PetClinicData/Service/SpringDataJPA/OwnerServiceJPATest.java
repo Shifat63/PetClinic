@@ -40,7 +40,7 @@ class OwnerServiceJPATest {
     }
 
     @Test
-    void findByLastName() {
+    void findByLastName() throws Exception{
         when(ownerRepository.findByLastName(any())).thenReturn(owners);
         for(Owner eachOwner : ownerServiceJPA.findByLastName(lastName))
         {
@@ -50,7 +50,7 @@ class OwnerServiceJPATest {
     }
 
     @Test
-    void findAll() {
+    void findAll() throws Exception{
         Owner owner2 = new Owner();
         owner2.setId(2L);
         owner2.setLastName("Khan");
@@ -62,7 +62,7 @@ class OwnerServiceJPATest {
     }
 
     @Test
-    void findById() {
+    void findById() throws Exception{
         when(ownerRepository.findById(any())).thenReturn(Optional.of(owner));
         assertNotNull(ownerServiceJPA.findById(id));
         assertEquals(id, ownerServiceJPA.findById(id).getId());
@@ -70,20 +70,20 @@ class OwnerServiceJPATest {
     }
 
     @Test
-    void save() {
+    void save() throws Exception{
         when(ownerRepository.save(any())).thenReturn(owner);
         assertNotNull(ownerServiceJPA.save(any()));
         verify(ownerRepository).save(any());
     }
 
     @Test
-    void delete() {
+    void delete() throws Exception{
         ownerServiceJPA.delete(owner);
         verify(ownerRepository, times(1)).delete(any());
     }
 
     @Test
-    void deleteById() {
+    void deleteById() throws Exception{
         ownerServiceJPA.deleteById(id);
         verify(ownerRepository, times(1)).deleteById(id);
     }
