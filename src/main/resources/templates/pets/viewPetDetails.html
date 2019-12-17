@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+<body>
+<h1 th:text="'Pet Details'">Pet Details</h1>
+<table id="petDetails" class="table table-striped table-hover">
+    <tr>
+        <th>Name: </th>
+        <td th:text="${pet.getName()}"></td>
+    </tr>
+    <tr>
+        <th>Date of Birth: </th>
+        <td th:text="${pet.getBirthDate()}"></td>
+    </tr>
+    <tr>
+        <th>Type: </th>
+        <td th:text="${pet.getPetType().getName()}"></td>
+    </tr>
+    <tr>
+        <th>Owner: </th>
+        <td>
+            <a th:href="@{'/owners/viewOwnerDetails/' + ${pet.getOwner().getId()}}" th:text="${pet.getOwner().getFirstName()+ ' ' +pet.getOwner().getLastName()}"></a>
+        </td>
+    </tr>
+    <tr>
+        <th>Visits: </th>
+        <td>
+            <table id="petVisits" class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="visit : ${pet.getVisits()}">
+                    <td th:text="${visit.getDate()}">
+                    </td>
+                    <td th:text="${visit.getDescription()}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <a class="btn btn-outline-danger" th:href="@{'/pets/deletePet/' + ${pet.getId()}}">Delete</a>
+            <a class="btn btn-outline-info" th:href="@{'/pets/editPet/' + ${pet.getId()}}">Edit</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+<body>
+    <h1 th:text="'Owner List'">Owner List</h1>
+    <table id="owners" class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>City</th>
+                <th>Telephone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="owner : ${owners}">
+                <td>
+                    <a th:href="@{/owners/viewOwnerDetails/__${owner.getId()}__}" th:text="${owner.getFirstName() + ' ' + owner.getLastName()}"/></a>
+                </td>
+                <td th:text="${owner.getCity()}">
+                </td>
+                <td th:text="${owner.getTelephone()}">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+

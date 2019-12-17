@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'vets')}">
+<body>
+    <h2>Search Veterinarians</h2>
+    <form action="#" th:action="@{/vets/searchVets}" class="was-validated" method="post">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label>Specialtiy:</label>
+            <select name="speciality" id="speciality" class="form-control browser-default custom-select">
+                <option value="" selected>Select Speciality</option>
+                <span th:each="specialityOption : ${specialities}">
+                    <option th:value="${specialityOption.getId()}" th:text="${specialityOption.getDescription()}"></option>
+                </span>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <h2>View Veterinarians</h2>
+    <table id="vets" class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Specialties</th>
+        </tr>
+        <tr th:each="vet : ${vets}">
+            <td th:text="${vet.firstName + ' ' + vet.lastName}"></td>
+            <td>
+                <span th:each="speciality, iStat : ${vet.getSpecialities()}">
+                    <span th:if="${iStat.count == iStat.size}">
+                        <span th:text="${speciality.getDescription()}"></span>
+                    </span>
+                    <span th:unless="${iStat.count == iStat.size}">
+                        <span th:text="${speciality.getDescription()} + ','"></span>
+                    </span>
+                </span>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

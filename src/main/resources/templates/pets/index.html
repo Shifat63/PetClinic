@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+<body>
+<h1 th:text="'Pet List'">Pet List</h1>
+<table id="pets" class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Date of Birth</th>
+        <th>Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pet : ${pets}">
+        <td>
+            <a th:href="@{'/pets/viewPetDetails/' + ${pet.getId()} }" th:text="${pet.getName()}"/></a>
+        </td>
+        <td th:text="${pet.getBirthDate()}">
+        </td>
+        <td th:text="${pet.getPetType().getName()}">
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
+
