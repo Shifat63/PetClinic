@@ -19,7 +19,7 @@ public class VetController {
         this.specialityService = specialityService;
     }
 
-    @RequestMapping({"","/","/index","/index.html"})
+    @RequestMapping({"","/","/index"})
     public String index(Model model) throws Exception{
         model.addAttribute("vets", vetService.findAll());
         model.addAttribute("specialities", specialityService.findAll());

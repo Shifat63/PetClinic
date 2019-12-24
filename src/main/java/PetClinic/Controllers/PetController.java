@@ -27,18 +27,18 @@ public class PetController {
         this.petTypeService = petTypeService;
     }
 
-    @RequestMapping({"", "/", "/index", "/index.html"})
+    @RequestMapping({"", "/", "/index"})
     public String index(Model model) throws Exception
     {
         model.addAttribute("pets", petService.findAll());
-        return "/pets/index";
+        return "pets/index";
     }
 
     @RequestMapping({"/viewPetDetails/{id}"})
     public String viewPetDetails(@PathVariable("id") Long id, Model model) throws Exception
     {
         model.addAttribute("pet", petService.findById(id));
-        return "/pets/viewPetDetails";
+        return "pets/viewPetDetails";
     }
 
     @RequestMapping({"/registerPet"})
@@ -47,7 +47,7 @@ public class PetController {
         model.addAttribute("pet", new Pet());
         model.addAttribute("owners", ownerService.findAll());
         model.addAttribute("petTypes", petTypeService.findAll());
-        return "/pets/registerPet";
+        return "pets/registerPet";
     }
 
     @RequestMapping(value = {"/registerPet"}, method = RequestMethod.POST)
@@ -57,7 +57,7 @@ public class PetController {
         {
             model.addAttribute("owners", ownerService.findAll());
             model.addAttribute("petTypes", petTypeService.findAll());
-            return "/pets/registerPet";
+            return "pets/registerPet";
         }
         Pet savedPet = petService.save(pet);
         return "redirect:/pets/viewPetDetails/" + savedPet.getId();
@@ -69,7 +69,7 @@ public class PetController {
         model.addAttribute("pet", petService.findById(id));
         model.addAttribute("owners", ownerService.findAll());
         model.addAttribute("petTypes", petTypeService.findAll());
-        return "/pets/registerPet";
+        return "pets/registerPet";
     }
 
     @RequestMapping({"/deletePet/{id}"})

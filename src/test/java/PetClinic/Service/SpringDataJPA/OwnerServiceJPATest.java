@@ -56,7 +56,7 @@ class OwnerServiceJPATest {
         owner2.setLastName("Khan");
         owners.add(owner2);
         when(ownerRepository.findAll()).thenReturn(owners);
-        assertNotNull(ownerServiceJPA.findAll().size());
+        assertNotNull(ownerServiceJPA.findAll());
         assertEquals(2, ownerServiceJPA.findAll().size());
         verify(ownerRepository, times(2)).findAll();
     }
@@ -66,14 +66,15 @@ class OwnerServiceJPATest {
         when(ownerRepository.findById(any())).thenReturn(Optional.of(owner));
         assertNotNull(ownerServiceJPA.findById(id));
         assertEquals(id, ownerServiceJPA.findById(id).getId());
-        verify(ownerRepository, times(2)).findById(any());
+        verify(ownerRepository, times(2)).findById(id);
     }
 
     @Test
     void save() throws Exception{
         when(ownerRepository.save(any())).thenReturn(owner);
-        assertNotNull(ownerServiceJPA.save(any()));
-        verify(ownerRepository).save(any());
+        assertNotNull(ownerServiceJPA.save(owner));
+        assertEquals(id, ownerServiceJPA.save(owner).getId());
+        verify(ownerRepository, times(2)).save(owner);
     }
 
     @Test

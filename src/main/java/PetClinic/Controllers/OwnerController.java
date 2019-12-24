@@ -21,13 +21,13 @@ public class OwnerController {
         this.ownerService = ownerService;
     }
 
-    @RequestMapping({"","/","/index","/index.html"})
+    @RequestMapping({"","/","/index"})
     public String index(Model model) throws Exception{
         model.addAttribute("owners", ownerService.findAll());
         return "owners/index";
     }
 
-    @RequestMapping({"/registerOwner", "/registerOwner.html"})
+    @RequestMapping({"/registerOwner"})
     public String registerOwnerGet(Model model) throws Exception
     {
         Owner owner = new Owner();
