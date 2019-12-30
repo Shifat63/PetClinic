@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>shifat63.PetClinic</groupId>
-    <artifactId>shifat63-petclinic</artifactId>
+    <groupId>com.shifat63</groupId>
+    <artifactId>petclinic</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>shifat63-petclinic</name>
+    <name>PetClinic</name>
     <description>Spring Boot project</description>
     <packaging>jar</packaging>
 
